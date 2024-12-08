@@ -1,0 +1,16 @@
+.App {
+  font-family: 'DM Sans';
+  background-color: #f8f8f8;
+  min-height: 100vh;
+
+}
+
+.Background {
+  background-color: #fc7fb6;
+  color: #ffffff;
+}
+
+.Main {
+  padding: 25px;
+
+}
