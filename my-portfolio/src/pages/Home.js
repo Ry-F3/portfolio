@@ -5,6 +5,8 @@ import Oku from "../images/projects/oku.png"
 import BorgLite from "../images/projects/borglite.png"
 import Holdu from "../images/projects/holdu.png"
 import TraderTribe from "../images/projects/trade.png"
+import DojiLite from "../images/projects/doji-lite.png"
+import Black from "../images/projects/black.png"
 import ProjectCard from "../components/portfolio/ProjectCard";
 
 function Home() {
@@ -70,14 +72,14 @@ function Home() {
                 />
                   {/* Project 5 */}
                   <ProjectCard
-                  image={TraderTribe}
+                  image={DojiLite}
                   title="Project 5"
                   description="Brief description of the project goes here."
                   link="#"
                 />
                   {/* Project 6 */}
                   <ProjectCard
-                  image={BorgLite}
+                  image={Black}
                   title="Project 6"
                   description="Brief description of the project goes here."
                   link="#"
