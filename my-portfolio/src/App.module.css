@@ -2,6 +2,8 @@
   font-family: 'DM Sans';
   background-color: #f8f9fa;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 
 }
 
@@ -11,6 +13,6 @@
 }
 
 .Main {
-  padding: 25px;
+  padding: 0px;
 
 }

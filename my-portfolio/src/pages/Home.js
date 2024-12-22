@@ -11,7 +11,7 @@ import ProjectCard from "../components/portfolio/ProjectCard";
 
 function Home() {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div className="d-flex bg-light flex-column min-vh-100">
       <div className="container mt-3 flex-fill">
         {/* Main Content Section */}
         <div className="d-flex">
@@ -33,7 +33,7 @@ function Home() {
             </p>
           </div>
 
-          {/* Right Content Area */}
+  
           {/* Right Content Area */}
           <div className="flex-fill mt-4 ms-4">
             {/* Outer Box */}
