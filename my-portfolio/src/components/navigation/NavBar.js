@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom"; // For active link handling
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light p-2 fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light p-2">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           Rhys Few

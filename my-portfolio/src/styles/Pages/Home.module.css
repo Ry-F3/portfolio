@@ -1,0 +1,23 @@
+/* Custom Grid Overrides */
+@media (max-width: 1024px) {
+    .custom-grid .col-md-2 {
+      flex: 0 0 50%; /* Make each column 50% of the width */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .custom-grid .col-sm-2 {
+      flex: 0 0 100%; /* Make each column 100% width on small screens */
+    }
+  }
+  
+  /* Adjust the gap between columns for smaller screens */
+  .custom-grid .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .custom-grid .col {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  

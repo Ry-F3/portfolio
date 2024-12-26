@@ -4,15 +4,17 @@ import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/navigation/NavBar";
 
+
+
 function App() {
   return (
     <div className={Styles.App}>
       <Navbar/>
-      <container className={Styles.Main}>
+      <div className={Styles.Main}>
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
-      </container>
+      </div>
     </div>
   );
 }

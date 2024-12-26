@@ -1,88 +1,85 @@
 import React from "react";
-import Image from "../components/profile/ProfilePicture"
-import Ai from "../images/projects/ai-img.png"
-import Oku from "../images/projects/oku.png"
-import BorgLite from "../images/projects/borglite.png"
-import Holdu from "../images/projects/holdu.png"
-import TraderTribe from "../images/projects/trade.png"
-import DojiLite from "../images/projects/doji-lite.png"
-import Black from "../images/projects/black.png"
-import ProjectCard from "../components/portfolio/ProjectCard";
+import Image from "../components/profile/ProfilePicture";
+import Ai from "../images/projects/ai-img.png";
+import Oku from "../images/projects/oku.png";
+import BorgLite from "../images/projects/borglite.png";
+import Holdu from "../images/projects/holdu.png";
+import TraderTribe from "../images/projects/trade.png";
+import DojiLite from "../images/projects/doji-lite.png";
+import Black from "../images/projects/black.png";
+import ProjectCard from "../components/projects/ProjectCard";
 
 function Home() {
   return (
     <div className="d-flex bg-light flex-column min-vh-100">
-      <div className="container mt-3 flex-fill">
+      <div className="container mt-2 flex-fill">
         {/* Main Content Section */}
-        <div className="d-flex">
-          {/* Left Sidebar */}
+        <div className="row">
+          {/* Left Sidebar (Profile) */}
           <div
-            className="bg-light rounded p-1"
+            className="col-12 col-md-3 mb-3 g-4 mb-md-0 bg-light border-bottom border-muted"
             style={{
-              width: "300px",
-              top: "10px",
               height: "fit-content",
-            }}
-          >
-
-            <Image/>
-            <h4 className="text-left">Rhys Few</h4>
-            <p className="text-left text-muted">
-              Full Stack Developer <br />
-              Passionate about coding and design.
-            </p>
+            }}>
+            <Image />
+            <div className="p-3">
+              <h4 className="text-left mb-3">Rhys Few</h4>
+              <p className="text-left text-muted">
+                Full Stack Developer <br />
+                Passionate about coding and design.
+              </p>
+            </div>
           </div>
 
-  
-          {/* Right Content Area */}
-          <div className="flex-fill mt-4 ms-4">
-            {/* Outer Box */}
+          {/* Right Content Area (Projects) */}
+          <div className="col-12 col-md-9">
             <div className="p-4 rounded bg-light">
-              <h3 className="text-left text-muted mb-4">&lt; my_projects /&gt;</h3>
-              <div className="row">
-                {/* Project 1 */}
+              <h4 className="text-left text-muted mb-4">
+                &lt; my_projects /&gt;
+              </h4>
+              <div className="row row-cols-md-2 row-cols-sm-1 row-cols-lg-2 row-cols-xl-3">
+                {/* Project Cards */}
                 <ProjectCard
                   image={Ai}
-                  title="Project 1"
+                  title="Project: ai.img"
                   description="Brief description of the project goes here."
-                  link="#"
+                  link="https://ry-f3.github.io/ai-img/"
+                  repo="https://github.com/Ry-F3/ai-img"
                 />
-
-                {/* Project 2 */}
                 <ProjectCard
                   image={Oku}
-                  title="Project 2"
+                  title="Project: oku"
                   description="Brief description of the project goes here."
-                  link="#"
+                  link="https://ry-f3.github.io/Oku/"
+                  repo="https://github.com/Ry-F3/Oku"
                 />
-
-                {/* Project 3 */}
                 <ProjectCard
                   image={BorgLite}
-                  title="Project 3"
+                  title="Project: borglite"
                   description="Brief description of the project goes here."
-                  link="#"
+                  link="https://borglite.herokuapp.com/"
+                  repo="https://github.com/Ry-F3/BorgLite"
                 />
-                  {/* Project 4 */}
-                  <ProjectCard
+                <ProjectCard
                   image={Holdu}
-                  title="Project 4"
+                  title="Project: holdu"
                   description="Brief description of the project goes here."
-                  link="#"
+                  link="https://hold-u-c52c62c74dca.herokuapp.com/"
+                  repo="https://github.com/Ry-F3/holdu"
                 />
-                  {/* Project 5 */}
-                  <ProjectCard
+                <ProjectCard
                   image={DojiLite}
-                  title="Project 5"
+                  title="Project: doji-lite"
                   description="Brief description of the project goes here."
-                  link="#"
+                  link="https://dashboard.heroku.com/apps/doji-lite"
+                  repo="https://github.com/Ry-F3/doji-lite-v2"
                 />
-                  {/* Project 6 */}
-                  <ProjectCard
+                <ProjectCard
                   image={Black}
                   title="Project 6"
                   description="Brief description of the project goes here."
                   link="#"
+                  disabled={true}
                 />
               </div>
             </div>
