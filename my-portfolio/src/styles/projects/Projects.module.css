@@ -27,3 +27,15 @@
     width: 60%;
     border-radius: 4px;
 }
+
+.PictureCardPositive {
+    height: 200px !important;
+    object-fit: contain;
+    background-color: black;
+}
+
+.PictureCardNeg {
+    height: 200px !important;
+    object-fit: cover;
+    background-color: #f4f5f7;
+}

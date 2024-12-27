@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Bar from "../../styles/projects/Projects.module.css";
+import Project from "../../styles/projects/Projects.module.css";
 
 function ProjectCard({ image, title, description, link, repo, disabled }) {
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -30,9 +30,9 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
     : { opacity: 1 };
 
   // Define image style based on disabled status
-  const imageStyle = disabled
-    ? { height: "200px", objectFit: "cover", backgroundColor: "#f4f5f7" } // Use cover when disabled
-    : { height: "200px", objectFit: "contain", backgroundColor: "black" }; // Default style
+  const imageClass = disabled
+  ? Project.PictureCardNeg  // Use class when disabled
+  : Project.PictureCardPositive; // Default class
 
   return (
     <div className="d-flex">
@@ -40,9 +40,9 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
       <div className="card mb-3 w-100" style={cardStyle}>
         <img
           src={image}
-          className="img-fluid"
+          className={`img-fluid ${imageClass}`}
           alt={title}
-          style={imageStyle} // Apply the conditional image style
+         
         />
         <div
           className="card-body d-flex flex-column justify-content-between"
@@ -50,14 +50,14 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
           {disabled ? (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               {/* Placeholder for project name */}
-              <div className={`${Bar.LineBarShort} mb-2`}></div>
+              <div className={`${Project.LineBarShort} mb-2`}></div>
 
               {/* Placeholder for project description */}
-              <div className={`${Bar.LineBarLong} mb-2`}></div>
-              <div className={`${Bar.LineBarMedium} mb-2`}></div>
+              <div className={`${Project.LineBarLong} mb-2`}></div>
+              <div className={`${Project.LineBarMedium} mb-2`}></div>
 
               {/* Placeholder for buttons */}
-              <div className={`${Bar.PlaceHolderBtn} bg-secondary mt-3`}></div>
+              <div className={`${Project.PlaceHolderBtn} bg-secondary mt-3`}></div>
             </div>
           ) : (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
