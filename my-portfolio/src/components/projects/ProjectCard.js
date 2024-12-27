@@ -20,33 +20,27 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
               setLastUpdated(date.toLocaleString());
             }
           })
-          .catch((error) => console.error("Failed to fetch GitHub data", error));
+          .catch((error) =>
+            console.error("Failed to fetch GitHub data", error)
+          );
       }
     }
   }, [repo]);
 
-  const cardStyle = disabled
-    ? { opacity: 0.5, pointerEvents: "none" }
-    : { opacity: 1 };
+  const cardStyle = disabled ? Project.OpacityNeg : Project.OpacityPositive;
 
   // Define image style based on disabled status
   const imageClass = disabled
-  ? Project.PictureCardNeg  // Use class when disabled
-  : Project.PictureCardPositive; // Default class
+    ? Project.PictureCardNeg // Use class when disabled
+    : Project.PictureCardPositive; // Default class
 
   return (
     <div className="d-flex">
       {/* Flex container for consistent height */}
-      <div className="card mb-3 w-100" style={cardStyle}>
-        <img
-          src={image}
-          className={`img-fluid ${imageClass}`}
-          alt={title}
-         
-        />
+      <div className={`card mb-3 w-100" ${cardStyle}`}>
+        <img src={image} className={`img-fluid ${imageClass}`} alt={title} />
         <div
-          className="card-body d-flex flex-column justify-content-between"
-          style={{ minHeight: "150px" }}>
+          className={`card-body d-flex flex-column justify-content-between ${Project.MinHeight}`}>
           {disabled ? (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               {/* Placeholder for project name */}
@@ -55,25 +49,25 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
               {/* Placeholder for project description */}
               <div className={`${Project.LineBarLong} mb-2`}></div>
               <div className={`${Project.LineBarMedium} mb-2`}></div>
+              <div className={`${Project.LineBarLong} mb-2`}></div>
+              <div className={`${Project.LineBarMedium} mb-2`}></div>
 
               {/* Placeholder for buttons */}
-              <div className={`${Project.PlaceHolderBtn} bg-secondary mt-3`}></div>
+              <div
+                className={`${Project.PlaceHolderBtn} bg-secondary mt-3`}></div>
             </div>
           ) : (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               <h5 className="card-title">{title}</h5>
               {lastUpdated && (
-                <p className="text-muted">
-                  Last updated: {lastUpdated}
-                </p>
+                <p className="text-muted">Last updated: {lastUpdated}</p>
               )}
               <p className="card-text">{description}</p>
               <div>
                 <a
                   href={link}
                   target="_blank"
-                  className="btn btn-primary"
-                  style={{ marginRight: "10px" }}>
+                  className={`btn btn-primary ${Project.MarginRight}`}>
                   View Project
                 </a>
                 {repo && (
@@ -82,7 +76,6 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
                   </a>
                 )}
               </div>
-           
             </div>
           )}
         </div>
