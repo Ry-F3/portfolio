@@ -23,13 +23,16 @@ function ProjectCard({
   ];
 
   const cardStyle = disabled ? Project.OpacityNeg : Project.OpacityPositive;
-  const imageClass = disabled ? Project.PictureCardNeg : Project.PictureCardPositive;
+  const imageClass = disabled
+    ? Project.PictureCardNeg
+    : Project.PictureCardPositive;
 
   const toggleReadMore = () => setIsExpanced(!isExpanded);
 
   const toggleTechStack = () => setShowTechStack(!showTechStack); // Toggle tech stack visibility
 
-  const truncatedDescription = description.length > 100 ? `${description.slice(0, 100)}...` : description;
+  const truncatedDescription =
+    description.length > 100 ? `${description.slice(0, 100)}... ` : description;
 
   useEffect(() => {
     if (repo) {
@@ -68,7 +71,8 @@ function ProjectCard({
           className={`img-fluid ${imageClass} ${Project.CardImg}`}
           alt={title}
         />
-        <div className={`card-body d-flex flex-column justify-content-between ${Project.CardBody}`}>
+        <div
+          className={`card-body d-flex flex-column justify-content-between ${Project.CardBody}`}>
           {disabled ? (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               <div className={`${Project.LineBarShort} mb-2`}></div>
@@ -81,18 +85,30 @@ function ProjectCard({
             </div>
           ) : (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
-              <div className="rounded bg-light p-1 mb-3 flex-grow-">
-                <h5 className={`card-title ${Project.CardTitle}`}>{title}</h5>
+              <div
+                className={`rounded bg-light p-1 mb-3 flex-grow-1 ${
+                  Project.CardTextBox
+                } ${isExpanded ? Project.Expanded : ""}`}>
+                <>
+                <h5 className={`card-title mt-1 p-1 ${Project.CardTitle}`}>{title}</h5>
                 {lastUpdated && (
-                  <p className="text-muted">Last updated: {lastUpdated}</p>
+                  <p className="text-muted p-1">Last updated: {lastUpdated}</p>
                 )}
-                <p className={`card-text mx-1 ${Project.CardText} ${isExpanded ? Project.Expanded : ''}`}>
+                </>
+                <p className={`card-text mx-1 ${Project.CardText}`}>
                   {showTechStack ? (
-                    <span>{techStack}</span> // Display the tech stack when toggled
+                    <div className={`${Project.CardTextBox}`}>
+                      <h6>Tech Stack:</h6>
+                      <ul>
+                        {techStack.map((tech, index) => (
+                          <li key={index}>{tech}</li>
+                        ))}
+                      </ul>
+                    </div>
                   ) : (
                     <>
                       {isExpanded ? description : truncatedDescription}
-                      {description.length > 100 && (
+                      {description.length > 100 && !isExpanded && (
                         <button
                           className="btn btn-link p-0"
                           onClick={toggleReadMore}>
@@ -107,20 +123,20 @@ function ProjectCard({
                 <a
                   href={link}
                   target="_blank"
-                  className={`btn btn-primary ${Project.MarginRight} ${Project.Btn}`}>
+                  className={`btn btn-primary mb-2 ${Project.MarginRight} ${Project.Btn}`}>
                   View Project
                 </a>
                 {repo && (
                   <a
                     href={repo}
                     target="_blank"
-                    className={`btn btn-secondary ${Project.Btn}`}>
+                    className={`btn btn-secondary mb-2 ${Project.Btn}`}>
                     <FaCode />
                   </a>
                 )}
                 {techStack && (
                   <button
-                    className={`btn btn-secondary mx-1 ${Project.Btn}`}
+                    className={`btn btn-secondary mb-2 mx-1 ${Project.Btn}`}
                     onClick={toggleTechStack}
                     aria-label="Toggle Tech Stack">
                     {showTechStack ? <FaRegClipboard /> : <FaSitemap />}
