@@ -3,6 +3,28 @@ import Project from "../../styles/projects/Projects.module.css";
 
 function ProjectCard({ image, title, description, link, repo, disabled }) {
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [isExpanded, setIsExpanced] = useState(false);
+
+  // Dummy Line bar classes
+  const lineBarClasses = [
+    Project.LineBarLong,
+    Project.LineBarMedium,
+    Project.LineBarLong,
+    Project.LineBarMedium,
+  ];
+
+  const cardStyle = disabled ? Project.OpacityNeg : Project.OpacityPositive;
+
+  // Define image style based on disabled status
+  const imageClass = disabled
+    ? Project.PictureCardNeg // Use class when disabled
+    : Project.PictureCardPositive; // Default class
+
+  // Toggle description with over 100 characters
+  const toggleReadMore = () => setIsExpanced(!isExpanded);
+
+  const truncatedDescription =
+    description.length > 100 ? `${description.slice(0, 100)}...` : description;
 
   useEffect(() => {
     if (repo) {
@@ -27,13 +49,6 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
     }
   }, [repo]);
 
-  const cardStyle = disabled ? Project.OpacityNeg : Project.OpacityPositive;
-
-  // Define image style based on disabled status
-  const imageClass = disabled
-    ? Project.PictureCardNeg // Use class when disabled
-    : Project.PictureCardPositive; // Default class
-
   return (
     <div className="d-flex">
       {/* Flex container for consistent height */}
@@ -47,10 +62,11 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
               <div className={`${Project.LineBarShort} mb-2`}></div>
 
               {/* Placeholder for project description */}
-              <div className={`${Project.LineBarLong} mb-2`}></div>
-              <div className={`${Project.LineBarMedium} mb-2`}></div>
-              <div className={`${Project.LineBarLong} mb-2`}></div>
-              <div className={`${Project.LineBarMedium} mb-2`}></div>
+              <div>
+                {lineBarClasses.map((lineBarClass, index) => (
+                  <div key={index} className={`${lineBarClass} mb-2`}></div>
+                ))}
+              </div>
 
               {/* Placeholder for buttons */}
               <div
@@ -62,7 +78,16 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
               {lastUpdated && (
                 <p className="text-muted">Last updated: {lastUpdated}</p>
               )}
-              <p className="card-text">{description}</p>
+              <p className="card-text">
+                {isExpanded ? description : truncatedDescription}
+                {description.length > 100 && (
+                  <button
+                    className="btn btn-link p-0 ml-2"
+                    onClick={toggleReadMore}>
+                    {isExpanded ? "Read Less" : "Read More"}
+                  </button>
+                )}
+              </p>
               <div>
                 <a
                   href={link}
