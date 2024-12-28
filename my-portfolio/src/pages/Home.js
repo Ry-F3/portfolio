@@ -73,35 +73,37 @@ function Home() {
                 <ProjectCard
                   image={Ai}
                   title="Ai.img"
-                  description="Brief description of the project goes here."
+                  description="
+A project exploring AI's transformative impact on marketing, creativity, and careers, highlighting new opportunities and the future of work in these industries."
                   link="https://ry-f3.github.io/ai-img/"
                   repo="https://github.com/Ry-F3/ai-img"
+                  techStack="Html5, CSS and GitHub pages."
                 />
                 <ProjectCard
                   image={Oku}
                   title="Oku"
-                  description="Brief description of the project goes here."
+                  description="A custom-designed calculator created to support my trading and technical analysis, helping to define achievable price targets for more informed decision-making in the market."
                   link="https://ry-f3.github.io/Oku/"
                   repo="https://github.com/Ry-F3/Oku"
                 />
                 <ProjectCard
                   image={BorgLite}
                   title="Borglite"
-                  description="Brief description of the project goes here."
+                  description="A text-based retro game inspired by the Star Trek universe, where players can challenge themselves to crack a hacking mini-game and assimilate all the planets. Compete for a spot on the leaderboard and see if you have what it takes to dominate the galaxy!"
                   link="https://borglite.herokuapp.com/"
                   repo="https://github.com/Ry-F3/BorgLite"
                 />
                 <ProjectCard
                   image={Holdu}
                   title="Holdu"
-                  description="Brief description of the project goes here."
+                  description="A job application platform designed to facilitate interaction between employers and employees through a rating system. The idea was born from my experience in the health and social sector, where I identified a gap in the market for connecting workers with job opportunities more efficiently."
                   link="https://hold-u-c52c62c74dca.herokuapp.com/"
                   repo="https://github.com/Ry-F3/holdu"
                 />
                 <ProjectCard
                   image={DojiLite}
                   title="Doji-lite"
-                  description="Brief description of the project goes here."
+                  description="An automated tool that enables users to download their trading data from the Blofin Exchange. The platform uses a trade matching algorithm powered by Redis cloud, ensuring an efficient asynchronous workflow for seamless operation."
                   link="https://dashboard.heroku.com/apps/doji-lite"
                   repo="https://github.com/Ry-F3/doji-lite-v2"
                 />
