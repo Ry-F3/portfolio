@@ -1,26 +1,43 @@
+.LineBarShort,
+.LineBarMedium,
+.LineBarLong,
+.PlaceHolderBtn {
+  background-color: #dcdcdc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  opacity: 1; /* Start with full visibility */
+  animation: fadeInOut 3s infinite alternate;
+}
+
+/* Fade In and Out animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 1; /* Fully visible at the start */
+  }
+  50% {
+    opacity: 1; /* Stay fully visible at the middle */
+  }
+  100% {
+    opacity: 0.5; /* Fade out to nearly invisible at the end */
+  }
+}
+
+/* Specific styles for different bar sizes */
 .LineBarShort {
-    background-color: #dcdcdc;
-    height: 20px;
-    width: 70%;
-    margin-bottom: 10px;
-    border-radius: 4px;
+  height: 20px;
+  width: 70%;
 }
 
 .LineBarMedium {
-    background-color: #dcdcdc;
-    height: 15px;
-    width: 85%;
-    margin-bottom: 10px;
-    border-radius: 4px;
+  height: 15px;
+  width: 85%;
 }
 
 .LineBarLong {
-    background-color: #dcdcdc;
-    height: 15px;
-    width: 90%;
-    margin-bottom: 10px;
-    border-radius: 4px;
+  height: 15px;
+  width: 90%;
 }
+
 
 .PlaceHolderBtn {
     height: 30px;

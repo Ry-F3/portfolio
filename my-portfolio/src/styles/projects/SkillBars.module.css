@@ -1,0 +1,60 @@
+.SkillBarsContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .SkillBar {
+    margin-bottom: 20px;
+  }
+  
+  .SkillInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .BarContainer {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 16px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .Bar {
+    height: 16px;
+    border-radius: 8px;
+    width: 0%; /* Start collapsed */
+    background-color: #3498db; /* Default color */
+    transition: width 1.5s ease-in-out; /* Smoothly animate width */
+  }
+  
+  .Shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    from {
+      left: -50px;
+    }
+    to {
+      left: 100%;
+    }
+  }
+  

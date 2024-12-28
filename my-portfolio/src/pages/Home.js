@@ -1,15 +1,38 @@
 import React from "react";
 import Image from "../components/profile/ProfilePicture";
+// Projects
 import Ai from "../images/projects/ai-img.png";
 import Oku from "../images/projects/oku.png";
 import BorgLite from "../images/projects/borglite.png";
 import Holdu from "../images/projects/holdu.png";
-import TraderTribe from "../images/projects/trade.png";
 import DojiLite from "../images/projects/doji-lite.png";
 import Black from "../images/projects/black.png";
 import ProjectCard from "../components/projects/ProjectCard";
+import SkillBars from "../components/projects/SkillBars";
 
 function Home() {
+
+  const skills = {
+    languages: [
+      { language: "JavaScript", proficiency: 85, color: "#3498db" }, // light blue
+      { language: "Python", proficiency: 70, color: "#2980b9" }, // medium blue
+      { language: "C", proficiency: 65, color: "#1f648e" }, // darker blue
+      { language: "HTML", proficiency: 95, color: "#5dade2" }, // soft blue
+    ],
+    frameworks: [
+      { framework: "React", proficiency: 90, color: "#1f77b4" }, // blue (primary React color)
+      { framework: "Django", proficiency: 75, color: "#21618c" }, // dark blue
+      { framework: "Django Rest Framework", proficiency: 70, color: "#2471a3" }, // deep blue
+      { framework: "Flask", proficiency: 65, color: "#85c1e9" }, // very light blue
+    ],
+    databases: [
+      { database: "MySQL", proficiency: 75, color: "#5b9bd5" }, // light sky blue
+      { database: "PostgreSQL", proficiency: 70, color: "#1b4f72" }, // dark navy blue
+    ]
+  };
+  
+  
+
   return (
     <div className="d-flex bg-light flex-column min-vh-100">
       <div className="container mt-2 flex-fill">
@@ -19,7 +42,10 @@ function Home() {
           <div
             className="col-12 col-md-3 mb-3 g-4 mb-md-0 bg-light border-bottom border-muted"
             style={{
-              height: "fit-content",
+              position: "sticky",
+              top: "0", // sticks to the top when you scroll down
+              height: "fit-content", // this ensures that it maintains its height
+              zIndex: 100, // ensures it stays on top of other content when scrolling
             }}>
             <Image />
             <div className="p-3">
@@ -28,6 +54,12 @@ function Home() {
                 Full Stack Developer <br />
                 Passionate about coding and design.
               </p>
+            </div>
+
+            {/* Additional Information */}
+            <div className="p-3 border-top">
+              {/* <h5>My Coding Proficiency</h5> */}
+              <SkillBars skills={skills} />
             </div>
           </div>
 

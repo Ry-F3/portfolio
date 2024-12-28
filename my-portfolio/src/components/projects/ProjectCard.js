@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Project from "../../styles/projects/Projects.module.css";
+import { FaCode } from 'react-icons/fa';
 
 function ProjectCard({ image, title, description, link, repo, disabled }) {
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -70,7 +71,7 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
 
               {/* Placeholder for buttons */}
               <div
-                className={`${Project.PlaceHolderBtn} bg-secondary mt-3`}></div>
+                className={`${Project.PlaceHolderBtn} mt-3`}></div>
             </div>
           ) : (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
@@ -97,7 +98,7 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
                 </a>
                 {repo && (
                   <a href={repo} target="_blank" className="btn btn-secondary">
-                    &lt;/&gt;
+                     <FaCode />
                   </a>
                 )}
               </div>
