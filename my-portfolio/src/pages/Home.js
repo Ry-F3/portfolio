@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "../components/profile/ProfilePicture";
+import Contact from "../components/profile/Contact";
+import SkillBars from "../components/projects/SkillBars";
 // Projects
 import Ai from "../images/projects/ai-img.png";
 import Oku from "../images/projects/oku.png";
@@ -8,10 +10,8 @@ import Holdu from "../images/projects/holdu.png";
 import DojiLite from "../images/projects/doji-lite.png";
 import Black from "../images/projects/black.png";
 import ProjectCard from "../components/projects/ProjectCard";
-import SkillBars from "../components/projects/SkillBars";
 
 function Home() {
-
   const skills = {
     languages: [
       { language: "JavaScript", proficiency: 85, color: "#3498db" }, // light blue
@@ -28,10 +28,8 @@ function Home() {
     databases: [
       { database: "MySQL", proficiency: 75, color: "#5b9bd5" }, // light sky blue
       { database: "PostgreSQL", proficiency: 70, color: "#1b4f72" }, // dark navy blue
-    ]
+    ],
   };
-  
-  
 
   return (
     <div className="d-flex bg-light flex-column min-vh-100">
@@ -42,10 +40,7 @@ function Home() {
           <div
             className="col-12 col-md-3 mb-3 g-4 mb-md-0 bg-light border-bottom border-muted"
             style={{
-              position: "sticky",
-              top: "0", // sticks to the top when you scroll down
               height: "fit-content", // this ensures that it maintains its height
-              zIndex: 100, // ensures it stays on top of other content when scrolling
             }}>
             <Image />
             <div className="p-3">
@@ -61,6 +56,10 @@ function Home() {
               {/* <h5>My Coding Proficiency</h5> */}
               <SkillBars skills={skills} />
             </div>
+
+            <div className="p-3 border-top">
+              <Contact />
+            </div>
           </div>
 
           {/* Right Content Area (Projects) */}
@@ -73,35 +72,35 @@ function Home() {
                 {/* Project Cards */}
                 <ProjectCard
                   image={Ai}
-                  title="Project: ai.img"
+                  title="Ai.img"
                   description="Brief description of the project goes here."
                   link="https://ry-f3.github.io/ai-img/"
                   repo="https://github.com/Ry-F3/ai-img"
                 />
                 <ProjectCard
                   image={Oku}
-                  title="Project: oku"
+                  title="Oku"
                   description="Brief description of the project goes here."
                   link="https://ry-f3.github.io/Oku/"
                   repo="https://github.com/Ry-F3/Oku"
                 />
                 <ProjectCard
                   image={BorgLite}
-                  title="Project: borglite"
+                  title="Borglite"
                   description="Brief description of the project goes here."
                   link="https://borglite.herokuapp.com/"
                   repo="https://github.com/Ry-F3/BorgLite"
                 />
                 <ProjectCard
                   image={Holdu}
-                  title="Project: holdu"
+                  title="Holdu"
                   description="Brief description of the project goes here."
                   link="https://hold-u-c52c62c74dca.herokuapp.com/"
                   repo="https://github.com/Ry-F3/holdu"
                 />
                 <ProjectCard
                   image={DojiLite}
-                  title="Project: doji-lite"
+                  title="Doji-lite"
                   description="Brief description of the project goes here."
                   link="https://dashboard.heroku.com/apps/doji-lite"
                   repo="https://github.com/Ry-F3/doji-lite-v2"

@@ -17,44 +17,53 @@
     font-weight: bold;
   }
   
+  .Shimmer {
+    position: absolute;
+    top: 0;
+    left: -50px; /* Start outside the bar */
+    width: 50px;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,             /* Transparent on the left */
+      rgba(255, 255, 255, 0.3) 40%,           /* Softer shine near the left */
+      rgba(255, 255, 255, 0.5) 50%,           /* Lighter shine in the center */
+      rgba(255, 255, 255, 0.3) 60%,           /* Softer shine near the right */
+      rgba(255, 255, 255, 0) 100%            /* Transparent on the right */
+    );
+    opacity: 0;
+    animation: shimmer 1s ease-in-out 1 forwards;
+    animation-delay: 0.5s;
+    z-index: 1; /* Ensure shimmer stays above the background but under the color bar */
+  }
+  
+  @keyframes shimmer {
+    0% {
+      left: -50px; /* Start outside the bar */
+      opacity: 1; /* Start fully visible */
+    }
+    100% {
+      left: 100%; /* Move across the bar */
+      opacity: 0; /* Fade out at the end */
+    }
+  }
+  
   .BarContainer {
     width: 100%;
-    background-color: #e0e0e0;
+    background-color: #dae3e9; /* The color of the bar */
     height: 16px;
     border-radius: 8px;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Hide shimmer outside the bar */
   }
   
   .Bar {
     height: 16px;
     border-radius: 8px;
     width: 0%; /* Start collapsed */
-    background-color: #3498db; /* Default color */
+    background-color: #3498db; /* The color of the bar */
     transition: width 1.5s ease-in-out; /* Smoothly animate width */
-  }
-  
-  .Shimmer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    animation: shimmer 1.5s infinite;
-  }
-  
-  @keyframes shimmer {
-    from {
-      left: -50px;
-    }
-    to {
-      left: 100%;
-    }
+    position: relative;
+    z-index: 2; /* Makes sure the shimmer is behind the bar */
   }
   

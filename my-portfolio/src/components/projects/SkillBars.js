@@ -75,7 +75,7 @@ const SkillBars = ({ skills }) => {
         <div key={index} className={SkillStyles.SkillBar}>
           <div className={SkillStyles.SkillInfo}>
             <span className={SkillStyles.SkillName}>
-              {skill.language || skill.framework || skill.databases}
+              {skill.language || skill.framework || skill.database}
             </span>
             <span className={SkillStyles.SkillPercent}>
               {currentPercentages[index]}%
@@ -88,7 +88,7 @@ const SkillBars = ({ skills }) => {
                 width: loaded ? `${skill.proficiency}%` : "0%",
                 backgroundColor: skill.color || "#3498db",
               }}>
-              <div className={SkillStyles.Shimmer}></div>
+              <div key={activeCategory} className={SkillStyles.Shimmer}></div>
             </div>
           </div>
         </div>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Project from "../../styles/projects/Projects.module.css";
+import Project from "../../styles/projects/Projects.module.css"; // Ensure to import the updated styles
 import { FaCode } from 'react-icons/fa';
 
 function ProjectCard({ image, title, description, link, repo, disabled }) {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [isExpanded, setIsExpanced] = useState(false);
 
-  // Dummy Line bar classes
   const lineBarClasses = [
     Project.LineBarLong,
     Project.LineBarMedium,
@@ -16,12 +15,10 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
 
   const cardStyle = disabled ? Project.OpacityNeg : Project.OpacityPositive;
 
-  // Define image style based on disabled status
   const imageClass = disabled
-    ? Project.PictureCardNeg // Use class when disabled
-    : Project.PictureCardPositive; // Default class
+    ? Project.PictureCardNeg
+    : Project.PictureCardPositive;
 
-  // Toggle description with over 100 characters
   const toggleReadMore = () => setIsExpanced(!isExpanded);
 
   const truncatedDescription =
@@ -29,12 +26,10 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
 
   useEffect(() => {
     if (repo) {
-      // Extract owner and repo name from the repo URL
       const match = repo.match(/github\.com\/([^/]+)\/([^/]+)/);
       if (match) {
         const [_, owner, repoName] = match;
 
-        // Fetch last updated time from GitHub API
         fetch(`https://api.github.com/repos/${owner}/${repoName}`)
           .then((response) => response.json())
           .then((data) => {
@@ -43,9 +38,7 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
               setLastUpdated(date.toLocaleString());
             }
           })
-          .catch((error) =>
-            console.error("Failed to fetch GitHub data", error)
-          );
+          .catch((error) => console.error("Failed to fetch GitHub data", error));
       }
     }
   }, [repo]);
@@ -53,10 +46,9 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
   return (
     <div className="d-flex">
       {/* Flex container for consistent height */}
-      <div className={`card mb-3 w-100" ${cardStyle}`}>
-        <img src={image} className={`img-fluid ${imageClass}`} alt={title} />
-        <div
-          className={`card-body d-flex flex-column justify-content-between ${Project.MinHeight}`}>
+      <div className={`card mb-3 w-100 ${cardStyle} ${Project.Card}`}>
+        <img src={image} className={`img-fluid ${imageClass} ${Project.CardImg}`} alt={title} />
+        <div className={`card-body d-flex flex-column justify-content-between ${Project.CardBody}`}>
           {disabled ? (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               {/* Placeholder for project name */}
@@ -75,11 +67,11 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
             </div>
           ) : (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
-              <h5 className="card-title">{title}</h5>
+              <h5 className={`card-title ${Project.CardTitle}`}>{title}</h5>
               {lastUpdated && (
                 <p className="text-muted">Last updated: {lastUpdated}</p>
               )}
-              <p className="card-text">
+              <p className={`card-text ${Project.CardText}`}>
                 {isExpanded ? description : truncatedDescription}
                 {description.length > 100 && (
                   <button
@@ -93,11 +85,11 @@ function ProjectCard({ image, title, description, link, repo, disabled }) {
                 <a
                   href={link}
                   target="_blank"
-                  className={`btn btn-primary ${Project.MarginRight}`}>
+                  className={`btn btn-primary ${Project.MarginRight} ${Project.Btn}`}>
                   View Project
                 </a>
                 {repo && (
-                  <a href={repo} target="_blank" className="btn btn-secondary">
+                  <a href={repo} target="_blank" className={`btn btn-secondary ${Project.Btn}`}>
                      <FaCode />
                   </a>
                 )}
