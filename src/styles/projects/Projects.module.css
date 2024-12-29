@@ -172,3 +172,26 @@
 .MarginRight {
     margin-right: 10px;
 }
+
+/* Remove zoom effect on click for mobile and tablet devices */
+@media (max-width: 768px) {
+    .Card {
+        transform: none !important;
+        /* Disable zoom effect on hover/click for small devices */
+    }
+}
+
+/* Card zoom on scroll (applies to mobile and tablet) */
+.Card {
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect (only for larger screens) */
+@media (min-width: 769px) {
+    .Card:hover {
+        transform: scale(1.05);
+        /* Slight zoom effect */
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+}
