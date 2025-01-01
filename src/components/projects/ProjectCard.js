@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Project from "../../styles/projects/Projects.module.css"; // Ensure to import the updated styles
-import { FaCode, FaSitemap, FaRegClipboard } from "react-icons/fa"; // Import FaSitemap for the tech stack icon and FaRegClipboard for pen and paper
+import Project from "../../styles/projects/Projects.module.css";
+import { FaEllipsisV, FaCode, FaSitemap, FaRegClipboard } from "react-icons/fa";
 
 function ProjectCard({
   image,
@@ -13,7 +13,7 @@ function ProjectCard({
 }) {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [isExpanded, setIsExpanced] = useState(false);
-  const [showTechStack, setShowTechStack] = useState(false); // New state to toggle between description and tech stack
+  const [showTechStack, setShowTechStack] = useState(false);
 
   const lineBarClasses = [
     Project.LineBarLong,
@@ -23,22 +23,25 @@ function ProjectCard({
   ];
 
   const cardStyle = disabled ? Project.OpacityNeg : Project.OpacityPositive;
-  const imageClass = disabled
-    ? Project.PictureCardNeg
-    : Project.PictureCardPositive;
 
   const toggleReadMore = () => setIsExpanced(!isExpanded);
 
-  const toggleTechStack = () => setShowTechStack(!showTechStack); // Toggle tech stack visibility
+  const toggleTechStack = () => setShowTechStack(!showTechStack);
 
   const truncatedDescription =
     description.length > 100 ? `${description.slice(0, 100)}... ` : description;
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
 
   useEffect(() => {
     if (repo) {
       const match = repo.match(/github\.com\/([^/]+)\/([^/]+)/);
       if (match) {
-        const [_, owner, repoName] = match;
+        const [owner, repoName] = match;
 
         fetch(`https://api.github.com/repos/${owner}/${repoName}`)
           .then((response) => response.json())
@@ -56,21 +59,27 @@ function ProjectCard({
   }, [repo]);
 
   const handleMouseLeave = () => {
-    setIsExpanced(false); // Reset text expansion
-    setShowTechStack(false); // Reset tech stack toggle
+    setIsExpanced(false);
+    setShowTechStack(false);
+    setIsDropdownOpen(false);
   };
+
+  // Generate a unique id for the card using the title
+  const cardClassId = title
+    .replace(/^\s+|\s+$/g, "") // Remove leading and trailing whitespace
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/[^\w-]+/g, ""); // Remove non-alphanumeric characters except hyphens and underscores
+
+  const ClassId = cardClassId;
 
   return (
     <div className="d-flex">
       <div
-        className={`card mb-3 w-100 ${cardStyle} ${Project.Card}`}
-        onMouseLeave={handleMouseLeave} // Reset state on mouse leave
-      >
-        <img
-          src={image}
-          className={`img-fluid ${imageClass} ${Project.CardImg}`}
-          alt={title}
-        />
+        className={`card mb-3 w-100 ${cardStyle} ${Project.Card} ${Project[ClassId]}`}
+        onMouseLeave={handleMouseLeave}>
+        <div className={`mt-4 ${Project.ImageContainer}`}>
+          <img src={image} className={Project.CardImg} alt={title} />
+        </div>
         <div
           className={`card-body d-flex flex-column justify-content-between ${Project.CardBody}`}>
           {disabled ? (
@@ -86,15 +95,15 @@ function ProjectCard({
           ) : (
             <div className="d-flex flex-column flex-grow-1 justify-content-between">
               <div
-                className={`rounded bg-light p-1 mb-3 flex-grow-1 ${
-                  Project.CardTextBox
-                } ${isExpanded ? Project.Expanded : ""}`}>
-                <>
-                <h5 className={`card-title mt-1 p-1 ${Project.CardTitle}`}>{title}</h5>
+                className={`mb-3 flex-grow-1 ${Project.CardTextBox} ${
+                  isExpanded ? Project.Expanded : ""
+                }`}>
+                <h5 className={`card-title mt-1 p-1 ${Project.CardTitle}`}>
+                  {title}
+                </h5>
                 {lastUpdated && (
                   <p className="text-muted p-1">Last updated: {lastUpdated}</p>
                 )}
-                </>
                 <p className={`card-text mx-1 ${Project.CardText}`}>
                   {showTechStack ? (
                     <div className={`${Project.CardTextBox}`}>
@@ -119,32 +128,65 @@ function ProjectCard({
                   )}
                 </p>
               </div>
-              <div>
-                <a
-                  href={link}
-                  target="_blank"
-                  className={`btn btn-primary mb-2 ${Project.MarginRight} ${Project.Btn}`}>
-                  View Project
-                </a>
-                {repo && (
-                  <a
-                    href={repo}
-                    target="_blank"
-                    className={`btn btn-secondary mb-2 ${Project.Btn}`}>
-                    <FaCode />
-                  </a>
-                )}
-                {techStack && (
-                  <button
-                    className={`btn btn-secondary mb-2 mx-1 ${Project.Btn}`}
-                    onClick={toggleTechStack}
-                    aria-label="Toggle Tech Stack">
-                    {showTechStack ? <FaRegClipboard /> : <FaSitemap />}
-                  </button>
-                )}
-              </div>
             </div>
           )}
+        </div>
+        <div className={Project.BorderTop}></div>
+        {/* Button Section - This is now separated from the card body */}
+        <div>
+          <div className="d-flex p-2 justify-content-between">
+            {/* View Project button on the left */}
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              className={`btn btn-primary text-sm ${Project.MarginRight} ${Project.Btn}`}>
+              View Project
+            </a>
+
+            {/* Ellipsis (dropdown) button on the right */}
+            <div className="dropdown">
+              <button
+                className={`btn btn-secondary ${Project.Btn}`}
+                type="button"
+                id="dropdownMenuButton"
+                onClick={toggleDropdown}
+                aria-expanded={isDropdownOpen}>
+                <FaEllipsisV />
+              </button>
+              <ul
+                className={`dropdown-menu ${Project.DropContain} ${
+                  isDropdownOpen ? "show" : ""
+                } `}
+                aria-labelledby="dropdownMenuButton">
+                {repo && (
+                  <li className={Project.DropItem1}>
+                    <a
+                      href={repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${Project.DropItem1} p-0 ${Project.DropItemCustom}`}>
+                      <FaCode size={16} />
+                    </a>
+                  </li>
+                )}
+                {techStack && (
+                  <li className={Project.DropItem2}>
+                    <button
+                      className={`${Project.DropItem2} p-0 ${Project.DropItemCustom}`}
+                      onClick={toggleTechStack}
+                      aria-label="Toggle Tech Stack">
+                      {showTechStack ? (
+                        <FaRegClipboard size={16} />
+                      ) : (
+                        <FaSitemap size={16} />
+                      )}
+                    </button>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

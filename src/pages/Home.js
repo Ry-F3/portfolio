@@ -11,6 +11,15 @@ import DojiLite from "../images/projects/doji-lite.png";
 import Black from "../images/projects/black.png";
 import ProjectCard from "../components/projects/ProjectCard";
 
+// Utility function to truncate description text to a max of 100 words
+const truncateDescription = (text, wordLimit = 100) => {
+  const words = text.split(" ");
+  if (words.length > wordLimit) {
+    return words.slice(0, wordLimit).join(" ") + "...";
+  }
+  return text;
+};
+
 function Home() {
   const skills = {
     languages: [
@@ -36,7 +45,7 @@ function Home() {
       image: Ai,
       title: "Ai.img",
       description:
-        "A project exploring AI's transformative impact on marketing, creativity, and careers, highlighting new opportunities and the future of work in these industries.",
+        "A project exploring AI's impact on marketing, creativity, and careers, revealing opportunities and how AI reshapes industries and the future of work.",
       link: "https://ry-f3.github.io/ai-img/",
       repo: "https://github.com/Ry-F3/ai-img",
       techStack: ["HTML5", "CSS", "GitHub Pages"],
@@ -45,7 +54,7 @@ function Home() {
       image: Oku,
       title: "Oku",
       description:
-        "A custom-designed calculator created to support my trading and technical analysis, helping to define achievable price targets for more informed decision-making in the market.",
+        "A custom-designed calculator to assist in trading and technical analysis. It helps users set achievable price targets, making market decisions more informed.",
       link: "https://ry-f3.github.io/Oku/",
       repo: "https://github.com/Ry-F3/Oku",
       techStack: ["HTML5", "CSS", "JavaScript"],
@@ -54,7 +63,7 @@ function Home() {
       image: BorgLite,
       title: "Borglite",
       description:
-        "A text-based retro game inspired by the Star Trek universe, where players can challenge themselves to crack a hacking mini-game and assimilate all the planets. Compete for a spot on the leaderboard and see if you have what it takes to dominate the galaxy!",
+        "A retro, text-based game inspired by Star Trek, where players crack a hacking mini-game and aim to dominate the galaxy by assimilating planets.",
       link: "https://borglite.herokuapp.com/",
       repo: "https://github.com/Ry-F3/BorgLite",
       techStack: ["Python", "Heroku"],
@@ -63,16 +72,16 @@ function Home() {
       image: Holdu,
       title: "Holdu",
       description:
-        "A job application platform designed to facilitate interaction between employers and employees through a rating system. The idea was born from my experience in the health and social sector, where I identified a gap in the market for connecting workers with job opportunities more efficiently.",
+        "A job platform connecting employers and employees using a rating system. Built from the experience of recognizing a gap in efficient worker-job matchmaking.",
       link: "https://hold-u-c52c62c74dca.herokuapp.com/",
       repo: "https://github.com/Ry-F3/holdu",
-      techStack: ["Django REST", "Python", "React","Heroku", "ElephantSQL"],
+      techStack: ["Django REST", "Python", "React", "Heroku", "ElephantSQL"],
     },
     {
       image: DojiLite,
       title: "Doji-lite",
       description:
-        "An automated tool that enables users to download their trading data from the Blofin Exchange. The platform uses a trade matching algorithm powered by Redis cloud, ensuring an efficient asynchronous workflow for seamless operation.",
+        "An automated tool for downloading trading data from Blofin Exchange, utilizing a trade-matching algorithm powered by Redis cloud for efficiency.",
       link: "https://dashboard.heroku.com/apps/doji-lite",
       repo: "https://github.com/Ry-F3/doji-lite-v2",
       techStack: ["React", "Redis Cloud", "Django Rest", "Python"],
@@ -101,7 +110,6 @@ function Home() {
 
             {/* Additional Information */}
             <div className="p-3 border-top">
-              {/* <h5>My Coding Proficiency</h5> */}
               <SkillBars skills={skills} />
             </div>
 
@@ -116,28 +124,32 @@ function Home() {
               <h4 className="text-left text-muted mb-4">
                 &lt; my_projects /&gt;
               </h4>
-              <div className="row row-cols-md-2 row-cols-sm-1 row-cols-lg-2 row-cols-xl-3">
+              <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4">
                 {/* Project Cards */}
                 {projects.map((project, index) => (
                   <ProjectCard
                     key={index}
-                    image={project.image}
+                    image={Black}
                     title={project.title}
-                    description={project.description}
+                    description={truncateDescription(project.description)} // Truncated description
                     link={project.link}
                     repo={project.repo}
                     techStack={project.techStack}
                   />
                 ))}
-                {projects.lenght % 2 !== 0 && (
-                  <ProjectCard
-                    image={Black}
-                    title="Project 6"
-                    description="Brief description of the project goes here."
-                    link="#"
-                    disabled={true}
-                  />
-                )}
+                {projects.length % 4 !== 0 &&
+                  Array.from({ length: 4 - (projects.length % 4) }).map(
+                    (_, index) => (
+                      <ProjectCard
+                        key={`dummy-${index}`}
+                        image={Black}
+                        title="Placeholder"
+                        description="This is a placeholder card."
+                        link="#"
+                        disabled={true}
+                      />
+                    )
+                  )}
               </div>
             </div>
           </div>

@@ -47,30 +47,67 @@
     width: 90%;
 }
 
-
 .PlaceHolderBtn {
     height: 30px;
     width: 60%;
     border-radius: 4px;
 }
 
-/* Card Container */
-.Card {
-    background-color: #222;
-    /* Dark card background */
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    /* Ensure that the image doesn't overflow the card border */
-    transition: all 0.3s ease;
+.DropItemCustom {
+    padding: 10px; /* Adjust padding */
+    margin: 10px;  /* Remove margin if you don't want extra space */
+    display: flex; /* Flexbox to adjust the content inside */
+    align-items: center; /* Vertically align the icon */
 }
 
-/* Hover effect: Zoom-in and increase the shadow for the card */
-.Card:hover {
-    transform: scale(1.05);
-    /* Slight zoom effect */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+.DropContain {
+    min-width: fit-content !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.DropItem1, 
+.DropItem2 {
+    all: unset; /* Removes all default button styles */
+    display: flex; /* Reapply necessary styles */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font: inherit; /* Inherits font styles */
+    color: inherit; /* Inherits text color */
+    background-color: transparent; /* Removes button background */
+    border: none; /* Removes border */
+    cursor: pointer; /* Adds pointer cursor */
+    padding: 10px; /* Matches parent padding */
+    box-sizing: border-box;
+}
+
+.DropItem1:hover, 
+.DropItem2:hover {
+    color: white;
+    background-color: #b8bbc0;
+}
+
+
+/* Card Container */
+.Card {
+    max-height: 450px !important;
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    justify-content: center;
+    /* Center the content vertically */
+    align-items: center;
+    /* Center the content horizontally */
+    background-color: #f8f9fa !important;
+    border-radius: 25px;
+    /* Make the card corners more rounded */
+    outline: 1px solid rgba(108, 117, 125, 0.1);
+    /* 10% opacity for the outline */
+    overflow: visible;
+    /* Ensure that the image doesn't overflow the card border */
+    transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .CardText {
@@ -78,22 +115,24 @@
     line-height: 1.5;
     word-wrap: break-word;
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    overflow: hidden; /* Ensures the content doesn't overflow when collapsed */
+    overflow: hidden;
+    /* Ensures the content doesn't overflow when collapsed */
 }
 
 .CardTextBox {
-    min-height: 120px; /* Initial height */
-    transition: min-height 0.3s ease-in-out, max-height 0.3s ease-in-out; /* Smooth transition for both min-height and max-height */
+    min-height: 120px;
+    /* Initial height */
+    transition: min-height 0.3s ease-in-out, max-height 0.3s ease-in-out;
+    /* Smooth transition for both min-height and max-height */
     flex-direction: column;
-    overflow: hidden; /* Make sure the content doesn't overflow before expansion */
+    overflow: hidden;
+    /* Make sure the content doesn't overflow before expansion */
 }
-
 
 .Expanded {
     max-height: none !important;
     overflow: visible;
 }
-
 
 .CardBody {
     min-height: 150px;
@@ -115,15 +154,35 @@
     text-decoration: underline;
 }
 
-/* Image Styling */
+
 .CardImg {
-    width: 100%;
-    height: 200px;
     object-fit: cover;
-    /* Maintains aspect ratio without stretching */
-    filter: brightness(80%);
-    transition: filter 0.3s ease;
+    /* Make sure the image covers the entire container */
+    width: 100%;
+    /* Ensure the image stretches to full width */
+    height: 100%;
+    /* Ensure the image stretches to full height */
+    border-radius: 25px;
+    /* Slight rounding of the image corners to match the container */
 }
+
+.ImageContainer {
+    width: 150px;
+    height: 150px;
+    /* Adjust to your desired size */
+    padding: 0;
+    /* Remove padding to allow the image to fill the container */
+    border-radius: 30px;
+    /* Super rounded corners */
+    background-color: white;
+    /* Background color to create white space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    /* Space between image and other content */
+}
+
 
 /* Increase brightness on hover */
 .Card:hover .CardImg {
@@ -139,13 +198,13 @@
     font-weight: bold;
     border: none;
     transition: background-color 0.3s ease;
+    font-family: roboto !important;
 }
 
-
 .PictureCardPositive {
-    height: 200px !important;
+    height: 175pxpx !important;
     object-fit: contain;
-    background-color: black;
+    border-radius: 50px;
 }
 
 .PictureCardNeg {
@@ -154,10 +213,24 @@
     background-color: #f4f5f7;
 }
 
-
 .OpacityPositive {
     opacity: 1;
     width: 100%;
+}
+
+.BorderTop {
+    border-top: 1px solid rgba(108, 117, 125, 0.25);
+    /* 25% opacity for the outline */
+    width: 100%;
+    /* Stretches across the full width */
+    height: 1px;
+    z-index: 1;
+    margin: 0;
+    /* Remove any margin */
+    padding: 0;
+    /* Remove padding */
+    box-sizing: border-box;
+    /* Ensure it doesn't add extra space */
 }
 
 .OpacityNeg {
@@ -173,25 +246,34 @@
     margin-right: 10px;
 }
 
-/* Remove zoom effect on click for mobile and tablet devices */
-@media (max-width: 768px) {
-    .Card {
-        transform: none !important;
-        /* Disable zoom effect on hover/click for small devices */
-    }
-}
-
-/* Card zoom on scroll (applies to mobile and tablet) */
-.Card {
-    transition: transform 0.3s ease;
-}
-
-/* Hover effect (only for larger screens) */
+/* Hover effect: Zoom-in and increase the shadow for the card (only for larger screens) */
 @media (min-width: 769px) {
-    .Card:hover {
-        transform: scale(1.05);
+
+    .Card.Aiimg:hover,
+    .Card.Oku:hover,
+    .Card.Borglite:hover,
+    .Card.Holdu:hover,
+    .Card.Doji-lite:hover {
+        transform: scale(1.02);
+        /* Less aggressive zoom effect */
         /* Slight zoom effect */
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        background-color: rgb(221, 221, 221) !important;
+        max-height: 550px !important;
         cursor: pointer;
+        z-index: 10;
+    }
+
+}
+
+/* Ensure no zoom effect for mobile devices */
+@media (max-width: 768px) {
+
+    .Card.Aiimg:hover,
+    .Card.Oku:hover,
+    .Card.Borglite:hover,
+    .Card.Holdu:hover,
+    .Card.Doji-lite:hover {
+        transform: none;
+        /* Disable zoom effect */
     }
 }
