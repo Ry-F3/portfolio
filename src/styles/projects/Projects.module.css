@@ -274,6 +274,7 @@
     .Card.Holdu:hover,
     .Card.Doji-lite:hover {
         transform: none;
+        z-index: 10;
         /* Disable zoom effect */
     }
 }

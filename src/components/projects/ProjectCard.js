@@ -41,7 +41,7 @@ function ProjectCard({
     if (repo) {
       const match = repo.match(/github\.com\/([^/]+)\/([^/]+)/);
       if (match) {
-        const [owner, repoName] = match;
+        const [_, owner, repoName] = match;
 
         fetch(`https://api.github.com/repos/${owner}/${repoName}`)
           .then((response) => response.json())
