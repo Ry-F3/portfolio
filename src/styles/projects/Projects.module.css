@@ -91,7 +91,7 @@
 
 /* Card Container */
 .Card {
-    max-height: 450px !important;
+    max-height: 500px !important;
     display: flex;
     flex-direction: column;
     /* Stack items vertically */

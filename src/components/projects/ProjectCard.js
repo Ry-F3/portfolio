@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import Project from "../../styles/projects/Projects.module.css";
 import { FaEllipsisV, FaCode, FaSitemap, FaRegClipboard } from "react-icons/fa";
 
@@ -10,8 +10,9 @@ function ProjectCard({
   repo,
   disabled,
   techStack,
+  lastUpdated
 }) {
-  const [lastUpdated, setLastUpdated] = useState(null);
+
   const [isExpanded, setIsExpanced] = useState(false);
   const [showTechStack, setShowTechStack] = useState(false);
 
@@ -37,26 +38,7 @@ function ProjectCard({
     setIsDropdownOpen((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    if (repo) {
-      const match = repo.match(/github\.com\/([^/]+)\/([^/]+)/);
-      if (match) {
-        const [_, owner, repoName] = match;
 
-        fetch(`https://api.github.com/repos/${owner}/${repoName}`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.updated_at) {
-              const date = new Date(data.updated_at);
-              setLastUpdated(date.toLocaleDateString());
-            }
-          })
-          .catch((error) =>
-            console.error("Failed to fetch GitHub data", error)
-          );
-      }
-    }
-  }, [repo]);
 
   const handleMouseLeave = () => {
     setIsExpanced(false);
@@ -171,17 +153,17 @@ function ProjectCard({
                   </li>
                 )}
                 {techStack && (
-                  <li className={Project.DropItem2}>
-                    <button
+                  <li className={Project.DropItem2} onClick={toggleTechStack}
+                  aria-label="Toggle Tech Stack">
+                    <a
                       className={`${Project.DropItem2} p-0 ${Project.DropItemCustom}`}
-                      onClick={toggleTechStack}
-                      aria-label="Toggle Tech Stack">
+                      >
                       {showTechStack ? (
                         <FaRegClipboard size={16} />
                       ) : (
                         <FaSitemap size={16} />
                       )}
-                    </button>
+                    </a>
                   </li>
                 )}
               </ul>
